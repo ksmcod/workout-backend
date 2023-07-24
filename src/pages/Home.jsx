@@ -1,7 +1,33 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import WorkoutDetails from '../components/WorkoutDetails';
 
 export default function Home() {
+
+  const [workouts,setWorkouts] = useState(null);
+
+  useEffect(() => {
+    const fetchWorkouts = async () => {
+      const response = await fetch('http://localhost:4000/api/workouts');
+      const json = await response.json();
+
+      if(response.ok) {
+        setWorkouts(json);
+      }
+    }
+
+    fetchWorkouts();
+  },[]);
+
+
   return (
-    <div className='max-w-6xl mx-auto p-5 font-bold text-2xl'>Home</div>
+    <div className='max-w-6xl mx-auto p-5 grid grid-cols-ninja gap-24'>
+
+        <div className="">
+        { workouts && workouts.map(workout => (
+          <WorkoutDetails key={workout._id} workout={workout} />
+        ))}
+        </div>
+        
+    </div>
   )
 }
