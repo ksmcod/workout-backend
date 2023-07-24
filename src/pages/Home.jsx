@@ -1,22 +1,26 @@
 import React, { useEffect, useState } from 'react'
 import WorkoutDetails from '../components/WorkoutDetails';
+import { useLoaderData } from 'react-router-dom';
 
 export default function Home() {
 
-  const [workouts,setWorkouts] = useState(null);
+  // const rawWorkouts = useLoaderData();
+  // console.log("Workouts from loader: ",rawWorkouts);
 
-  useEffect(() => {
-    const fetchWorkouts = async () => {
-      const response = await fetch('http://localhost:4000/api/workouts');
-      const json = await response.json();
+  const [workouts,setWorkouts] = useState(useLoaderData());
 
-      if(response.ok) {
-        setWorkouts(json);
-      }
-    }
+  // useEffect(() => {
+  //   const fetchWorkouts = async () => {
+  //     const response = await fetch('http://localhost:4000/api/workouts');
+  //     const json = await response.json();
 
-    fetchWorkouts();
-  },[]);
+  //     if(response.ok) {
+  //       setWorkouts(json);
+  //     }
+  //   }
+
+  //   fetchWorkouts();
+  // },[]);
 
 
   return (
@@ -27,7 +31,18 @@ export default function Home() {
           <WorkoutDetails key={workout._id} workout={workout} />
         ))}
         </div>
-        
+
     </div>
   )
+}
+
+export async function workoutsLoader() {
+  const response = await fetch('http://localhost:4000/api/workouts');
+  // const json = await response.json();
+
+  if(!response.ok) {
+    throw new Error('Could not load workouts!');
+  }
+
+  return response.json();
 }
