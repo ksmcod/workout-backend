@@ -3,7 +3,7 @@ import WorkoutDetails from '../components/WorkoutDetails';
 import { useLoaderData } from 'react-router-dom';
 
 export default function Home() {
-
+  
   // const rawWorkouts = useLoaderData();
   // console.log("Workouts from loader: ",rawWorkouts);
 
