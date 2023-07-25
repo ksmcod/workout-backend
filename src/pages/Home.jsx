@@ -32,7 +32,7 @@ export async function workoutsLoader() {
   // const json = await response.json();
 
   if(!response.ok) {
-    throw new Error('Could not load workouts!');
+    throw Error('Could not load workouts!');
   }
 
   return response.json();
