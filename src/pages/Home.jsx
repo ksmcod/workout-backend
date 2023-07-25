@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import WorkoutDetails from '../components/WorkoutDetails';
 import { useLoaderData } from 'react-router-dom';
+import WorkoutForm from '../components/WorkoutForm';
 
 export default function Home() {
 
@@ -10,18 +11,20 @@ export default function Home() {
   const [workouts,setWorkouts] = useState(useLoaderData());
 
   useEffect(() => {
-    document.title = 'Workout Pal!';
+    document.title = 'Workout Pal';
   },[]);
 
 
   return (
     <div className='max-w-6xl mx-auto p-5 grid grid-cols-ninja gap-24'>
 
-        <div className="">
+        <div className="space-y-5">
         { workouts && workouts.map(workout => (
           <WorkoutDetails key={workout._id} workout={workout} />
         ))}
         </div>
+
+        <WorkoutForm/>
 
     </div>
   )

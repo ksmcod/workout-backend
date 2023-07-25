@@ -1,30 +1,70 @@
 import React, { useState } from 'react'
 
 export default function WorkoutForm() {
-    const [workout,setWorkout] = useState({ title:'', load:'', reps:'' });
+    const [workout,setWorkout] = useState({ title:'', load:0, reps:'' });
+    const [error,setError] = useState(null);
 
-    function formHandler(e) {
+    async function formHandler(e) {
+        if(e.target == form) {
+            e.preventDefault();
+            console.log(workout);
 
+            const response = await fetch('http://localhost:4000/api/workouts',{
+                method: 'POST',
+                body: JSON.stringify(workout),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            const json = await response.json();
+
+            if(!response.ok) {
+                setError(json.error);
+            }
+
+            if(response.ok) {
+                setError(null);
+                setWorkout({ title:'', load:0, reps:'' });
+
+                console.log('New workout added: ',json);
+            }
+
+            return;
+        }
+
+        setWorkout(prevState => (
+            {...prevState,[e.target.name]:e.target.value}
+        ));
+
+        console.log(workout);
     }
   return (
-    <form onSubmit={e => formHandler(e)}>
-        <h3>Add a New Workout</h3>
-        <div className="">
-            <label htmlFor="title">Exercise Title: </label>
-            <input type="text" name='title' onChange={e => formHandler(e)} value={workout.title} />
+    <form name='form' onSubmit={e => formHandler(e)} className='space-y-4 p-1'>
+        <h3 className='font-bold text-xl text-center'>Add a New Workout</h3>
+        <div className=" space-y-1">
+            <label htmlFor="title" className='font-semibold'>Exercise Title </label>
+            <input
+             className='px-2 py-1 w-full border border-gray-100 rounded-md focus:outline-none shadow'
+             type="text" required name='title' onChange={e => formHandler(e)} value={workout.title} />
         </div>
 
-        <div className="">
-            <label htmlFor="load">Load (in kg): </label>
-            <input type="text" name='load' onChange={e => formHandler(e)} value={workout.load} />
+        <div className="space-y-1">
+            <label htmlFor="load" className='font-semibold'>Load (in kg) </label>
+            <input
+             className='px-2 py-1 w-full border border-gray-100 rounded-md focus:outline-none shadow'
+             type="number" required name='load' onChange={e => formHandler(e)} value={workout.load} />
         </div>
 
-        <div className="">
-            <label htmlFor="reps">Reps: </label>
-            <input type="text" name='reps' onChange={e => formHandler(e)} value={workout.reps} />
+        <div className="space-y-1">
+            <label htmlFor="reps" className='font-semibold'>Reps </label>
+            <input 
+             className='px-2 py-1 w-full border border-gray-100 rounded-md focus:outline-none shadow'
+            type="number" required name='reps' onChange={e => formHandler(e)} value={workout.reps} />
         </div>
 
-        <button>Add Workout</button>
+        <button className='bg-emerald-500 border-0 text-white px-2 py-1 rounded cursor-pointer w-full'>Add Workout</button>
+
+        {error && <div className='px-2 py-1 bg-pink-300 text-pink-500 border border-pink-500 rounded  '> { error } </div>}
     </form>
   )
 }
