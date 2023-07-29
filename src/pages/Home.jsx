@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useReducer } from 'react'
 import WorkoutDetails from '../components/WorkoutDetails';
 import { useLoaderData } from 'react-router-dom';
 import WorkoutForm from '../components/WorkoutForm';
+import useWorkoutsContext from '../hooks/useWorkoutsContext';
 
 export default function Home() {
 
   // const rawWorkouts = useLoaderData();
   // console.log("Workouts from loader: ",rawWorkouts);
 
-  const [workouts,setWorkouts] = useState(useLoaderData());
+  // const [workouts,setWorkouts] = useState(useLoaderData());
    
   // const loadedWorkouts = useLoaderData();
   // console.log(loadedWorkouts);
@@ -17,20 +18,25 @@ export default function Home() {
   //   setWorkouts(loaded);
   // }
 
+  const { workouts, dispatch } = useWorkoutsContext();
+
   useEffect(() => {
     document.title = 'Workout Pal';
     
-    // async function load() {
-      // const response = await fetch('http://localhost:4000/api/workouts');
-      // const json = await response.json();
+    async function load() {
+      const response = await fetch('http://localhost:4000/api/workouts');
+      const json = await response.json();
 
-      // if(!response.ok) {
-      //   throw Error('Could not load workouts!');
-      // }
+      if(!response.ok) {
+        throw Error('Could not load workouts!');
+      }
 
-      // setWorkouts(json); 
-      // console.log(json);
-    // }
+      dispatch({ type: 'SET_WORKOUTS', payload: json });
+ 
+      console.log(json);
+    }
+
+    load();
   },[]);
   
 

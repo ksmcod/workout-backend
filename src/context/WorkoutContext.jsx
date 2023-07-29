@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext,useReducer } from "react";
 
 
 export const WorkoutContext = createContext();
@@ -22,7 +22,7 @@ export default function WorkoutContextProider({ children }) {
   });
 
   return (
-    <WorkoutContext.Provider value={{state,dispatch}}>
+    <WorkoutContext.Provider value={{...state,dispatch}}>
         { children }
     </WorkoutContext.Provider>
   )
