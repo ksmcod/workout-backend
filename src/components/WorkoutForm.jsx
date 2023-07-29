@@ -37,8 +37,6 @@ export default function WorkoutForm() {
         setWorkout(prevState => (
             {...prevState,[e.target.name]:e.target.value}
         ));
-
-        console.log(workout);
     }
   return (
     <form name='form' onSubmit={e => formHandler(e)} className='space-y-4 p-1'>
