@@ -9,11 +9,30 @@ export default function Home() {
   // console.log("Workouts from loader: ",rawWorkouts);
 
   const [workouts,setWorkouts] = useState(useLoaderData());
+   
+  // const loadedWorkouts = useLoaderData();
+  // console.log(loadedWorkouts);
+  // function load() {
+  //   const loaded = useLoaderData();
+  //   setWorkouts(loaded);
+  // }
 
   useEffect(() => {
     document.title = 'Workout Pal';
-  },[]);
+    
+    // async function load() {
+      // const response = await fetch('http://localhost:4000/api/workouts');
+      // const json = await response.json();
 
+      // if(!response.ok) {
+      //   throw Error('Could not load workouts!');
+      // }
+
+      // setWorkouts(json); 
+      // console.log(json);
+    // }
+  },[]);
+  
 
   return (
     <div className='max-w-6xl mx-auto p-5 grid grid-cols-ninja gap-24'>
@@ -28,6 +47,7 @@ export default function Home() {
 
     </div>
   )
+
 }
 
 export async function workoutsLoader() {
@@ -40,3 +60,4 @@ export async function workoutsLoader() {
 
   return response.json();
 }
+

@@ -59,12 +59,12 @@ export default function WorkoutForm() {
             <label htmlFor="reps" className='font-semibold'>Reps </label>
             <input 
              className='px-2 py-1 w-full border border-gray-100 rounded-md focus:outline-none shadow'
-            type="number" required name='reps' onChange={e => formHandler(e)} value={workout.reps} />
+            type="number"  name='reps' onChange={e => formHandler(e)} value={workout.reps} />
         </div>
 
         <button className='bg-emerald-500 border-0 text-white px-2 py-1 rounded cursor-pointer w-full'>Add Workout</button>
 
-        {error && <div className='px-2 py-1 bg-pink-300 text-pink-500 border border-pink-500 rounded  '> { error } </div>}
+        {error && <div className='px-2 py-1 bg-pink-100 text-pink-600 border border-pink-600 rounded  '> { error } </div>}
     </form>
   )
 }
