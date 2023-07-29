@@ -6,16 +6,18 @@ export const WorkoutContext = createContext();
 export function workoutsReducer(state, action) {
   switch (action.type) {
     case 'SET_WORKOUTS':
-      return { workouts: action.payload };
+      return { workouts: action.payload }
+    
     case  'CREATE_WORKOUT':
-      return { workouts: [action.payload, ...state]};
+      return { workouts: [action.payload, ...state.workouts]}
+
     default:
-      return state;
+      return 'Something went wrong';
   }
 }
 
 
-export default function WorkoutContextProider({ children }) {
+export default function WorkoutContextProvider({ children }) {
 
   const [state,dispatch] = useReducer(workoutsReducer,{
     workouts:null

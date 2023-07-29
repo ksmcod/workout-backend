@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from 'react'
+import React, { useContext, useEffect, useReducer } from 'react'
 import WorkoutDetails from '../components/WorkoutDetails';
 import { useLoaderData } from 'react-router-dom';
 import WorkoutForm from '../components/WorkoutForm';
@@ -29,13 +29,9 @@ export default function Home() {
 
       if(!response.ok) {
         throw Error('Could not load workouts!');
-      }
-
+      } 
       dispatch({ type: 'SET_WORKOUTS', payload: json });
- 
-      console.log(json);
     }
-
     load();
   },[]);
   
