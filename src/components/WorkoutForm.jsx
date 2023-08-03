@@ -11,7 +11,7 @@ export default function WorkoutForm() {
             e.preventDefault();
             console.log(workout);
 
-            const response = await fetch('http://localhost:4000/api/workouts',{
+            const response = await fetch(`${import.meta.env.VITE_SERVER}/api/workouts`,{
                 method: 'POST',
                 body: JSON.stringify(workout),
                 headers: {

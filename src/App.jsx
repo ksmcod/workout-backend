@@ -6,7 +6,7 @@ import RootLayout from './layouts/RootLayout'
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<RootLayout/>}>
-      <Route index element={<Home/>} loader={workoutsLoader} />
+      <Route index element={<Home/>} />
 
     </Route>
   )
