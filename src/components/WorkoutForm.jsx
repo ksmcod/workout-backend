@@ -39,7 +39,7 @@ export default function WorkoutForm() {
         ));
     }
   return (
-    <form name='form' onSubmit={e => formHandler(e)} className='space-y-4 p-1'>
+    <form name='form' onSubmit={e => formHandler(e)} className='sm:space-y-4 space-y-2 sm:p-1 p-10'>
         <h3 className='font-bold text-xl text-center'>Add a New Workout</h3>
         <div className=" space-y-1">
             <label htmlFor="title" className='font-semibold'>Exercise Title </label>

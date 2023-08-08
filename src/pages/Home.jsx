@@ -40,9 +40,9 @@ export default function Home() {
   
 
   return (
-    <div className='max-w-6xl mx-auto p-5 grid grid-cols-ninja gap-24'>
+    <div className='max-w-6xl mx-auto flex flex-col-reverse gap-10 sm:p-5 sm:grid sm:grid-cols-ninja sm:gap-24'>
 
-        <div className="space-y-5">
+        <div className="space-y-5 px-5">
         { workouts && workouts.map(workout => (
           <WorkoutDetails key={workout._id} workout={workout} />
         ))}
