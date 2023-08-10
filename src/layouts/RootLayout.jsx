@@ -10,6 +10,10 @@ export default function RootLayout() {
             <NavLink to="/" className="text-gray-600">
                 <h1 className="font-bold text-3xl">Workout Pal</h1>
             </NavLink>
+            <nav className='space-x-2'>
+              <NavLink to='/login'>Login</NavLink>
+              <NavLink to='/signup'>Sign up</NavLink>
+            </nav>
         </div>
     </header>
 

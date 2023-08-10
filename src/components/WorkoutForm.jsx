@@ -45,21 +45,21 @@ export default function WorkoutForm() {
             <label htmlFor="title" className='font-semibold'>Exercise Title </label>
             <input
              className='px-2 py-1 w-full border border-gray-100 rounded-md focus:outline-none shadow'
-             type="text" required name='title' onChange={e => formHandler(e)} value={workout.title} />
+             type="text" required name='title' id='title' onChange={e => formHandler(e)} value={workout.title} />
         </div>
 
         <div className="space-y-1">
             <label htmlFor="load" className='font-semibold'>Load (in kg) </label>
             <input
              className='px-2 py-1 w-full border border-gray-100 rounded-md focus:outline-none shadow'
-             type="number" required name='load' onChange={e => formHandler(e)} value={workout.load} />
+             type="number" required name='load' id='load' onChange={e => formHandler(e)} value={workout.load} />
         </div>
 
         <div className="space-y-1">
             <label htmlFor="reps" className='font-semibold'>Reps </label>
             <input 
              className='px-2 py-1 w-full border border-gray-100 rounded-md focus:outline-none shadow'
-            type="number"  name='reps' onChange={e => formHandler(e)} value={workout.reps} />
+            type="number"  name='reps' id='reps' onChange={e => formHandler(e)} value={workout.reps} />
         </div>
 
         <button className='bg-emerald-500 border-0 text-white px-2 py-1 rounded cursor-pointer w-full'>Add Workout</button>
