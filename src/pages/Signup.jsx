@@ -1,13 +1,16 @@
 import { useState } from "react";
+import useSignUp from "../hooks/useSignUp";
 
 export default function Signup() {
   
   const [state,setState] = useState({ email:'', password:'' });
+  const { signup, error, isLoading } = useSignUp();
 
   function formHandler(e) {
     if (e.target == form) {
       e.preventDefault();
-      console.log("Final State: ",state)
+      console.log(state)
+      signup(state.email, state.password);
     }
 
     if(e.target.name == 'email') {
@@ -40,6 +43,8 @@ export default function Signup() {
         </div>
 
         <button className='bg-emerald-500 border-0 text-white py-2 rounded cursor-pointer w-full'>Sign Up</button>
+
+        { error && <div className="p-3  font-bold bg-pink-300 text-red-700">{error}</div>}
     </form> 
      )
 }
