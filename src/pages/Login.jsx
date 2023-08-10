@@ -1,12 +1,14 @@
 import { useState } from 'react'
+import useLogin from '../hooks/useLogin';
 
 export default function Login() {
     const [state,setState] = useState({ email:'', password:'' });
+    const { login, error, isLoading } = useLogin();
 
-    function formHandler(e) {
+    async function formHandler(e) {
         if (e.target == form) {
         e.preventDefault();
-        console.log("Final State: ",state)
+        await login();
         }
 
         if(e.target.name == 'email') {
@@ -38,6 +40,8 @@ export default function Login() {
         </div>
 
         <button className='bg-emerald-500 border-0 text-white py-2 rounded cursor-pointer w-full'>Login  </button>
+
+        { error && <div className="p-3  font-bold bg-pink-300 text-red-700">{error}</div>}
     </form>
   )
 }
