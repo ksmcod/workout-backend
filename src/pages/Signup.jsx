@@ -19,7 +19,7 @@ export default function Signup() {
   }
 
   return (
-<form name='form' onSubmit={e => formHandler(e)} className='sm:space-y-4 space-y-2 sm:p-14 p-10 max-w-sm mx-auto mt-10 rounded bg-white'>
+      <form name='form' onSubmit={e => formHandler(e)} className='sm:space-y-4 space-y-2 sm:p-14 p-10 max-w-sm mx-auto mt-10 rounded bg-white'>
 
         <h3 className='font-bold text-4xl text-center'>Sign Up</h3>
 
@@ -40,5 +40,6 @@ export default function Signup() {
         </div>
 
         <button className='bg-emerald-500 border-0 text-white py-2 rounded cursor-pointer w-full'>Sign Up</button>
-    </form>  )
+    </form> 
+     )
 }
