@@ -8,7 +8,7 @@ export default function Login() {
     async function formHandler(e) {
         if (e.target == form) {
         e.preventDefault();
-        await login();
+        await login(state.email,state.password);
         }
 
         if(e.target.name == 'email') {

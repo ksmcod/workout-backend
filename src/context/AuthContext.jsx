@@ -23,7 +23,7 @@ export default function AuthContextProvider({ children }) {
         if(user) {
             dispatch({ type:'LOGIN', payload:user });
         }
-    })
+    },[])
     console.log("Auth Context state: ",state);
 
     return(

@@ -1,14 +1,23 @@
 import useWorkoutsContext  from '../hooks/useWorkoutsContext'
 import trash from '../assets/trash.svg'
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
+import useAuthContext from '../hooks/useAuthContext';
 
 
 export default function WorkoutDetails({ workout }) {
   const { dispatch } = useWorkoutsContext();
+  const { user } = useAuthContext();
 
   async function handleDelete() {
+    if(!user) {
+      return
+    }
+    
     const response = await fetch(`${import.meta.env.VITE_SERVER}/api/workouts/${workout._id}`,{
-      method: 'DELETE'
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${user.token}`
+      }
     });
     const json = await response.json();
 
