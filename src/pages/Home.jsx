@@ -3,6 +3,7 @@ import WorkoutDetails from '../components/WorkoutDetails';
 import { useLoaderData } from 'react-router-dom';
 import WorkoutForm from '../components/WorkoutForm';
 import useWorkoutsContext from '../hooks/useWorkoutsContext';
+import useAuthContext from '../hooks/useAuthContext';
 
 export default function Home() {
 
@@ -19,13 +20,17 @@ export default function Home() {
   // }
 
   const { workouts, dispatch } = useWorkoutsContext();
+  const { user } = useAuthContext();
 
   useEffect(() => {
     document.title = 'Workout Pal';
     
     async function load() {
-      const response = await fetch(`${import.meta.env.VITE_SERVER}/api/workouts`);
-      console.log("response: ",import.meta.env);
+      const response = await fetch(`${import.meta.env.VITE_SERVER}/api/workouts`,{
+        headers: {
+          'Authorization': `Bearer ${user.token}`
+        }
+      });
       const json = await response.json();
       // console.log("Json is: ",response)
 
@@ -35,8 +40,10 @@ export default function Home() {
       dispatch({ type: 'SET_WORKOUTS', payload: json });
     }
 
-    load();
-  },[]);
+    if(user) {
+      load();
+    }
+  },[user]);
   
 
   return (
