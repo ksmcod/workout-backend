@@ -12,11 +12,11 @@ export default function Navbar() {
   }
   return (
     <header className="bg-white">
-        <div className="max-w-7xl mx-auto px-5 py-3 flex items-center justify-between ">
+        <div className="max-w-7xl mx-auto px-5 py-3 flex flex-col w-full sm:flex-row sm:items-center sm:justify-between ">
             <NavLink to="/" className="text-gray-600">
                 <h1 className="font-bold text-3xl">Workout Pal</h1>
             </NavLink>
-            <nav className='space-x-2 flex'>
+            <nav className='space-x-2 flex justify-self-end self-end '>
             { user &&  
                 <div className="p-1 space-x-3 flex items-center">
                   <span>{user.email}</span>
