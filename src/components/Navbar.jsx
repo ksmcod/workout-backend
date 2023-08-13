@@ -18,7 +18,7 @@ export default function Navbar() {
             </NavLink>
             <nav className='space-x-2 flex'>
             { user &&  
-                <div className="border p-1 space-x-3">
+                <div className="p-1 space-x-3 flex items-center">
                   <span>{user.email}</span>
                   <button className="border-2 border-emerald-600 px-2 py-1 rounded text-green-800" onClick={handleClick}>Log out</button>
                 </div> 
